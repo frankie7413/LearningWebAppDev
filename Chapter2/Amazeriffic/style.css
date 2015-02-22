@@ -1,0 +1,114 @@
+
+body {
+	background: #f9e933;
+}
+
+header, main, footer{
+	min-width: 855px;
+}
+
+header .container, main .container, footer .container{
+	max-width: 855px;
+	margin: auto
+}
+
+header{
+	background: white;
+	overflow: auto;
+	border-bottom: 2px solid lightgray;	
+}
+
+header .h1{
+	float: left;
+	width: 570px;
+	font-size: 300%;
+	color: #C80000 ;
+	text-align: left;
+	padding-bottom: 30px;
+	padding-top: 20px;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+header .nav{
+	float: right;
+	width: 285px;
+}
+
+body{
+	font-size: 100%;
+}
+
+main {
+	background: white;
+	overflow: auto;
+	
+}
+
+
+main .main_left{
+	float: left;
+	width: 570px;
+	text-align: left;
+	padding-top: 25px;
+	font-family: 'Droid Sans', sans-serif;
+}
+
+
+main .image{
+	float: right;
+	width: 285px;
+}
+
+main .main_h2, .main_h3{
+	font-family: 'Ubuntu', sans-serif;
+	padding-bottom: 15px;
+	padding-top: 10px;
+	font-size: 175%;
+	font-weight: bold;
+}
+
+main .main_h3{
+	font-size: 110%;
+	padding-top: 30px;
+}
+
+
+footer .contact_left{
+	float: left;
+	width: 570px;
+}
+
+
+footer .sitemap{
+	float: right;
+	width: 285px;
+}
+
+footer .contact_h1, .site_h1{
+	font-family: 'Ubuntu', sans-serif;
+	padding-top: 40px;
+	padding-bottom: 25px;
+}
+
+footer .important{
+	color: #C80000;
+}
+
+footer .ftlist{
+	-webkit-columns: 2;
+	columns: 2;
+	-moz-columns: 2;
+}
+
+a{
+	color: tomato;
+	text-decoration: none;
+}
+
+a:visited{
+	color: purple;
+}
+
+a:hover{
+	text-decoration: underline;
+}
