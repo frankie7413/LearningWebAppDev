@@ -73,6 +73,15 @@ main .main_h3{
 }
 
 
+main .question{
+	font-size: 120%;
+}
+
+main .answer{
+	font-size: 100%;
+	padding-bottom: 20px;
+}
+
 footer .contact_left{
 	float: left;
 	width: 570px;
