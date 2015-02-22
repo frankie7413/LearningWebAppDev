@@ -45,6 +45,10 @@ main {
 }
 
 
+main .container{
+	min-height: 450px;
+}
+
 main .main_left{
 	float: left;
 	width: 570px;
@@ -81,6 +85,7 @@ main .answer{
 	font-size: 100%;
 	padding-bottom: 20px;
 }
+
 
 footer .contact_left{
 	float: left;
