@@ -38,6 +38,10 @@ body{
 	font-size: 100%;
 }
 
+main .container{
+	min-height: 450px;
+}
+
 main {
 	background: white;
 	overflow: auto;
