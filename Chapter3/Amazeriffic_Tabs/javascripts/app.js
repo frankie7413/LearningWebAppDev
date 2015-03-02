@@ -72,10 +72,10 @@ var main = function () {
                 // $pic3.addClass("gallery").attr("href", "Gallery/newest_added.png").text("New");
                 // $pic4.addClass("gallery").attr("href", "Gallery/oldest_added.png").text("Old");
 
-                $pic1 = $("<li> <a href='Gallery/home.png' class='gallery cboxElement'>Home</a></li>");
-                $pic2 = $("<li> <a href='Gallery/adding_to_list.png' class='gallery cboxElement'>Add</a></li>");
-                $pic3 = $("<li> <a href='Gallery/newest_added.png' class='gallery cboxElement'>New</a></li>");
-                $pic4 = $("<li> <a href='Gallery/oldest_added.png' class='gallery cboxElement'>Old</a></li>");
+                $pic1 = $("<li><a href='Gallery/home.png' class='gallery'>Home</a></li>");
+                $pic2 = $("<li><a href='Gallery/adding_to_list.png' class='gallery'>Add</a></li>");
+                $pic3 = $("<li><a href='Gallery/newest_added.png' class='gallery'>New</a></li>");
+                $pic4 = $("<li><a href='Gallery/oldest_added.png' class='gallery'>Old</a></li>");
 
                 $content = $("<ul>").append($pic1, $pic2, $pic3, $pic4, $slide);
 
