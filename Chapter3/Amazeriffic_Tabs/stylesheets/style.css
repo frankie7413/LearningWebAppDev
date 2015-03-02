@@ -47,9 +47,15 @@ header nav{
 }
 
 a{
-	color: tomato;
+	color: #FF0000;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+main {
+    background: #fff;
+    border-radius: 0 5px 5px 5px;;
+    padding: 40px;
 }
 
 main .content {
@@ -84,9 +90,6 @@ main .content input {
     font-size: 1.5em;
 }
 
-main .container{
-	min-height: 450px;
-}
 
 main {
 	background: white;
@@ -107,9 +110,20 @@ main {
 	background: #eee;
 }
 
+
+footer{
+	padding: 40px 0 0 0;
+}
+
 footer .contact{
 	float: left;
 	width: 570px;
+}
+
+/*red to amzeriffic in footer*/
+footer .contact p:nth-child(2){
+	color: #FF0000;
+	font-style: italic;
 }
 
 
@@ -118,17 +132,17 @@ footer .sitemap{
 	width: 285px;
 }
 
-footer .ftlist{
+footer .ft{
 	-webkit-columns: 2;
 	columns: 2;
 	-moz-columns: 2;
 }
 
 
-a:visited{
+/*a:visited{
 	color: purple;
 }
 
 a:hover{
 	text-decoration: underline;
-}
+}*/
