@@ -3,13 +3,20 @@ var main = function() {
 	var $content, $newline, num;
 
 	//gets the values to print
-	var addline = function(num) {
+	function addline(num) {
 		$newline = $("<span>").text(num + " ");
 		$("body").append($newline);
 	};
 
-	var print = function(num1, num2) {
+	//space to separate output
+	function endspace()
+	{
 		$content = $("<p>");
+		$("body").append($content);
+	}
+
+	function print(num1, num2) {
+		
 		for (num = num1; num <= num2; num++) {
 			if (num%3 === 0 && num%5 === 0) {
 				addline("FizzBuzz");
@@ -21,7 +28,7 @@ var main = function() {
 				addline(num);
 			}	
 		}
-		$("body").append($content);
+		endspace();
 	};
 
 	function fizzbuzz_1() {
@@ -34,7 +41,6 @@ var main = function() {
 	};
 
 	function fizzbuzz_3 (arr) {
-		$content = $("<p>");
 		for (num = 0; num < arr.length; num++) {
 			if (arr[num]%3 === 0 && arr[num]%5 === 0) {
 				addline("FizzBuzz");
@@ -46,11 +52,10 @@ var main = function() {
 				addline(arr[num]);
 			}	
 		}
-		$("body").append($content);
+		endspace();
 	};
 
 	function fizzbuzz_4 (obj) {
-		$content = $("<p>");
 		for (num = 0; num <= 100; num++) {
 			if (num%3 === 0 && num%5 === 0) {
 				addline(obj.divisibleByThree + obj.divisibleByFive);
@@ -62,23 +67,22 @@ var main = function() {
 				addline(num);
 			}	
 		}
-		$("body").append($content);
+		endspace();
 	};
 
 	function fizzbuzz_5 (arr, obj) {
-		$content = $("<p>");
-		for (num = 0; num <= 100; num++) {
-			if (num%3 === 0 && num%5 === 0) {
+		for (num = 0; num < arr.length; num++) {
+			if (arr[num]%3 === 0 && arr[num]%5 === 0) {
 				addline(obj.divisibleByThree + obj.divisibleByFive);
-			} else if (num%5 === 0) {
+			} else if (arr[num]%5 === 0) {
 				addline(obj.divisibleByFive);
-			} else if (num% 3 === 0) {
+			} else if (arr[num]% 3 === 0) {
 				addline(obj.divisibleByThree);
 			} else {
-				addline(num);
+				addline(arr[num]);
 			}	
 		}
-		$("body").append($content);
+		endspace();
 	};
 		
 	fizzbuzz_1();
