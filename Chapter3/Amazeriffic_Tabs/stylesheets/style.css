@@ -1,6 +1,7 @@
 
 body {
 	background: #f9e933;
+	font-family: 'Droid Sans', sans-serif;
 }
 
 header, main, footer{
@@ -15,27 +16,72 @@ header .container, main .container, footer .container{
 header{
 	background: white;
 	overflow: auto;
-	border-bottom: 2px solid lightgray;	
+	border-bottom: 1px solid lightgray;	
+
+	padding-bottom: 25px;
+	padding-top: 25px;
 }
 
-header .h1{
+/*logo for page*/
+h1{
 	float: left;
 	width: 570px;
+
+	color: #C80000;
+	font-style: italic;
 	font-size: 300%;
-	color: #C80000 ;
-	text-align: left;
-	padding-bottom: 30px;
-	padding-top: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 
-header .nav{
+/*footer heading*/
+h5 {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 125%;
+	margin-bottom: 20px;
+}
+
+
+header nav{
 	float: right;
 	width: 285px;
 }
 
-body{
-	font-size: 100%;
+a{
+	color: tomato;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+main .content {
+    padding: 30px 10px 30px 10px;
+    border-radius: 0 5px 5px 5px;
+    background: #eee;
+}
+
+main .content li {
+    border-radius: 5px;
+    padding: 3px;
+    background: #eff;
+    margin: 0 0 10px 0;
+}
+
+main .content button {
+  font-weight: bold;
+  padding: 0 3px 0 3px;
+  border-radius: 5px;
+  background: #ccc;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 1.3em;
+}
+
+
+main .content p {
+    background: yellow;
+}
+
+main .content input {
+    font-size: 1.5em;
 }
 
 main .container{
@@ -44,49 +90,24 @@ main .container{
 
 main {
 	background: white;
-	overflow: auto;
-	
+	overflow: auto;	
 }
 
-
-main .main_left{
-	float: left;
-	width: 570px;
-	text-align: left;
-	padding-top: 25px;
-	font-family: 'Droid Sans', sans-serif;
+.tabs a span{
+	display: inline-block;
+	border-radius: 5px 5px 0 0;
+	width: 100px;
+	margin-right: 10px;
+	text-align: center;
+	background: #ddd;
+	padding: 5px;
 }
 
-
-main .image{
-	float: right;
-	width: 285px;
+.tabs a span.active {
+	background: #eee;
 }
 
-main .main_h2, .main_h3{
-	font-family: 'Ubuntu', sans-serif;
-	padding-bottom: 15px;
-	padding-top: 10px;
-	font-size: 175%;
-	font-weight: bold;
-}
-
-main .main_h3{
-	font-size: 110%;
-	padding-top: 30px;
-}
-
-
-main .question{
-	font-size: 120%;
-}
-
-main .answer{
-	font-size: 100%;
-	padding-bottom: 20px;
-}
-
-footer .contact_left{
+footer .contact{
 	float: left;
 	width: 570px;
 }
@@ -97,26 +118,12 @@ footer .sitemap{
 	width: 285px;
 }
 
-footer .contact_h1, .site_h1{
-	font-family: 'Ubuntu', sans-serif;
-	padding-top: 40px;
-	padding-bottom: 25px;
-}
-
-footer .important{
-	color: #C80000;
-}
-
 footer .ftlist{
 	-webkit-columns: 2;
 	columns: 2;
 	-moz-columns: 2;
 }
 
-a{
-	color: tomato;
-	text-decoration: none;
-}
 
 a:visited{
 	color: purple;
