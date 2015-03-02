@@ -1,12 +1,14 @@
-var main = function() {
-	"use strict";
-	var $content, $newline, num;
+// Client-side code
+/* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, strict: true, undef: true, unused: true */
+var main = function () {
+    "use strict";
+    var $content, $newline, num;
 
 	//gets the values to print
 	function addline(num) {
 		$newline = $("<span>").text(num + " ");
 		$("body").append($newline);
-	};
+	}
 
 	//space to separate output
 	function endspace()
@@ -29,16 +31,16 @@ var main = function() {
 			}	
 		}
 		endspace();
-	};
+	}
 
 	function fizzbuzz_1() {
 		print(1, 100);
-	};
+	}
 
 
 	function fizzbuzz_2 (start, end) {
-		print(start, end)
-	};
+		print(start, end);
+	}
 
 	function fizzbuzz_3 (arr) {
 		for (num = 0; num < arr.length; num++) {
@@ -53,7 +55,7 @@ var main = function() {
 			}	
 		}
 		endspace();
-	};
+	}
 
 	function fizzbuzz_4 (obj) {
 		for (num = 0; num <= 100; num++) {
@@ -68,7 +70,7 @@ var main = function() {
 			}	
 		}
 		endspace();
-	};
+	}
 
 	function fizzbuzz_5 (arr, obj) {
 		for (num = 0; num < arr.length; num++) {
@@ -83,7 +85,7 @@ var main = function() {
 			}	
 		}
 		endspace();
-	};
+	}
 		
 	fizzbuzz_1();
 	fizzbuzz_2(200, 300);
@@ -104,6 +106,4 @@ $(document).ready(main);
 //fizzbuzz_3(test);
 //fizzbuzz_4(obj);
 //fizzbuzz_5(test, obj);
-
-
 
