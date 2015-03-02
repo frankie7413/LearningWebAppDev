@@ -59,13 +59,14 @@ var main = function () {
                 //<div><input><button>+<button></div>
                 $content = $("<div>").append($input, $button);
             } else if ($element.parent().is(":nth-child(4)")){
-                $slide.text("jQuery('a.gallery').colorbox({ opacity:0.5 , rel:'group1', slideshow:true });");
                 $pic1 = $("<a>");
                 $pic2 = $("<a>");
                 $pic3 = $("<a>");
                 $pic4 = $("<a>");
+                $slide = $("<script>");
 
-                $pic1.addClass("gallery").attr("heref", "Gallery/home.png").text("Home");
+                $slide.text("jQuery('a.gallery').colorbox({ opacity:0.5 , rel:'group1', slideshow:true });");
+                $pic1.addClass("gallery").attr("herf", "Gallery/home.png").text("Home");
 
                 $(".content").append($pic1);
                 $(".content").append($slide);
