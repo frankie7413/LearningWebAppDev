@@ -1,7 +1,7 @@
 var main = function () {
     "use strict";
 
-    var requestURL = "http://api.flickr.com/services/feeds/photos_public.gne?tags=dog&format=json&jsoncallback=?";
+    var requestURL = "http://api.flickr.com/services/feeds/photos_public.gne?tags=bird&format=json&jsoncallback=?";
 
     $.getJSON(requestURL, function(flickrResponse) {
         flickrResponse.items.forEach(function (item) {
