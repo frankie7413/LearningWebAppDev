@@ -62,30 +62,16 @@ var main = function () {
                 $content = $("<div>").append($input, $button);
             } else if ($element.parent().is(":nth-child(4)")){
 
-                // $pic1 = $("<a>");
-                // $pic2 = $("<a>");
-                // $pic3 = $("<a>");
-                // $pic4 = $("<a>");
                 $slide = $("<script>");
     
                 $slide.text("jQuery('a.gallery').colorbox({ opacity:0.5 , rel:'group1', slideshow:true });");
-                // $pic1.addClass("gallery").attr("href", "Gallery/home.png").text("Home");
-                // $pic2.addClass("gallery").attr("href", "Gallery/adding_to_list.png").text("Add");
-                // $pic3.addClass("gallery").attr("href", "Gallery/newest_added.png").text("New");
-                // $pic4.addClass("gallery").attr("href", "Gallery/oldest_added.png").text("Old");
 
                 $pic1 = $("<li><a href='Gallery/home.png' class='gallery'>Home</a></li>");
                 $pic2 = $("<li><a href='Gallery/adding_to_list.png' class='gallery'>Add</a></li>");
                 $pic3 = $("<li><a href='Gallery/newest_added.png' class='gallery'>New</a></li>");
                 $pic4 = $("<li><a href='Gallery/oldest_added.png' class='gallery'>Old</a></li>");
 
-                $content = $("<ul>").append($pic1, $pic2, $pic3, $pic4, $slide);
-
-                // $(".content").append($pic1);
-                // $(".content").append($pic2);
-                // $(".content").append($pic3);
-                // $(".content").append($pic4);
-                //$(".content").append($slide);
+                $content = $("<ul>").append($pic1, $pic2, $pic3, $pic4, $slide)
 
             }
 
