@@ -45,72 +45,72 @@ function checkInput(playerSelect){
     else if (playerSelect === "paper")
     {
         if(aiSelect === "rock"){
-            game.outcome = "Win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }else if(aiSelect === "scissors"){
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
         else if(aiSelect === "lizard"){
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
         else{
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }        
     }
     else if (playerSelect === "scissors") //working
     {
         if(aiSelect === "rock"){
-            game.outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }else if(aiSelect === "paper"){
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }
         else if(aiSelect === "lizard"){
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }
         else{
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
     }
     else if (playerSelect === "lizard")
     {
         if(aiSelect === "rock"){
-            game.outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }else if(aiSelect === "scissors"){
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
         else if(aiSelect === "paper"){
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }
         else{
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }        
     }
     else if (playerSelect === "spock")
     {
         if(aiSelect === "rock"){
-            game.outcome = "Win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }else if(aiSelect === "scissors"){
-            outcome = "win";
+            gameStats.outcome = "\"win\"";
             gameStats.wins = gameStats.wins + 1;
         }
         else if(aiSelect === "lizard"){
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
         else{
-            outcome = "lose";
+            gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }        
     }
@@ -158,9 +158,8 @@ function routePage(req, res){
 //page with json object response 
 function gameResult(res) {
     temp = '{"outcome": ' + gameStats.outcome + ', "wins": ' + gameStats.wins + ', "losses": ' + gameStats.losses + ', "ties": ' + gameStats.ties + '}';
+    //parse json object 
     obj = JSON.parse(temp);
-
-    //res.writeHead(200, {"Content-Type": "text/html"});
 
     res.write("<!DOCTYPE html>\n");
     res.write("<html lang='en'>\n");
