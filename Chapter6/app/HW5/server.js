@@ -27,7 +27,7 @@ function checkInput(playerSelect){
     if(aiSelect === playerSelect)
     {
         gameStats.outcome = "\"Tie\"";
-        gameStats.ties = gameStats.ties + 1;
+        gameStats.ties++;
     }
     else if (playerSelect === "rock")  
     {
@@ -153,7 +153,6 @@ function bodyPage(res) {
 // var options = ["rock", "paper", "scissors", "lizard", "spock"];
 //routing after post to display score outcome and update json
 function routePage(req, res){
-    //not sure if i need this here or add later hm...
     res.writeHead(200, {"Content-Type": "text/html"});
     if(req.method === "POST" && req.url === "/play/rock"){
         checkInput("rock");
