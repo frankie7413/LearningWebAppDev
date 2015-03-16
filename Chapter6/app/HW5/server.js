@@ -135,12 +135,13 @@ function bodyPage(res) {
     //head
     res.write("<head>\n");
     res.write("<meta charset='utf-8'>\n");
-    res.write("<title>Game Testing</title>\n");
+    res.write("<title>Rock to Spock</title>\n");
     res.write("</head>\n");
 
     //body
     res.write("<body>\n");
-    res.write("<h1>Choose one of the options:</h1>\n");
+    res.write("<h1>Welcome to Rock, Paper, Scissors, Lizard, Spock</h1>\n");
+    res.write("<h3>Choose one of the options:</h3>\n");
     res.write("<form method='POST' action='/play/rock'><input type='submit' value='Rock'></form>\n");
     res.write("<form method='POST' action='/play/paper'><input type='submit' value='Paper'></form>\n");
     res.write("<form method='POST' action='/play/scissors'><input type='submit' value='Scissors'></form>\n");
