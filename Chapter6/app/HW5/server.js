@@ -1,6 +1,8 @@
 var http = require("http"),
     temp,
     obj, 
+    aiChoice,
+    playerChoice,
     server;
 
 //store stats of games played
@@ -18,9 +20,13 @@ function checkInput(playerSelect){
     //selects random value from array
     var aiSelect = options[Math.floor((Math.random() * options.length))]; 
 
+    //saved to use in gameResult funtion
+    aiChoice = aiSelect; 
+    playerChoice = playerSelect;
+
     if(aiSelect === playerSelect)
     {
-        gameStats.outcome = "Tie";
+        gameStats.outcome = "\"Tie\"";
         gameStats.ties = gameStats.ties + 1;
     }
     else if (playerSelect === "rock")  
@@ -40,7 +46,6 @@ function checkInput(playerSelect){
             gameStats.outcome = "\"lose\"";
             gameStats.losses = gameStats.losses + 1;
         }
-
     }
     else if (playerSelect === "paper")
     {
@@ -117,7 +122,7 @@ function checkInput(playerSelect){
 
 }
 
-//default page
+//default page to show options 
 function bodyPage(res) {
 
     res.write("<!DOCTYPE html>\n");
@@ -130,7 +135,7 @@ function bodyPage(res) {
 
     //body
     res.write("<body>\n");
-    res.write("<p>Choose an option: </p>\n");
+    res.write("<p>Choose an option:</p>\n");
     res.write("<form method='POST' action='/play/rock'><input type='submit' value='Rock'></form>\n");
     res.write("<form method='POST' action='/play/paper'><input type='submit' value='Paper'></form>\n");
     res.write("<form method='POST' action='/play/scissors'><input type='submit' value='Scissors'></form>\n");
@@ -140,7 +145,7 @@ function bodyPage(res) {
     res.end("</html>\n");
 }
 
-
+// var options = ["rock", "paper", "scissors", "lizard", "spock"];
 //routing after post to display score outcome and update json
 function routePage(req, res){
     //not sure if i need this here or add later hm...
@@ -149,7 +154,23 @@ function routePage(req, res){
         checkInput("rock");
         gameResult(res);
     }
-    else
+    else if(req.method === "POST" && req.url === "/play/paper"){
+        checkInput("paper");
+        gameResult(res);
+    }
+    else if(req.method === "POST" && req.url === "/play/scissors"){
+        checkInput("scissors");
+        gameResult(res);
+    }
+    else if(req.method === "POST" && req.url === "/play/lizard"){
+        checkInput("lizard");
+        gameResult(res);
+    }
+    else if(req.method === "POST" && req.url === "/play/spock"){
+        checkInput("spock");
+        gameResult(res);
+    }
+    else 
     {
         bodyPage(res);
     }
@@ -168,13 +189,13 @@ function gameResult(res) {
     res.write("<title>GAme Test</title>\n");
     res.write("</head>\n");
     res.write("<body>\n");
-    //res.write("You chose: " + choice + "<br>\n");
-    //res.write("AI chooses: " + aiChoice + "<br><br>\n");
+    res.write("You chose: " + playerChoice + "<br>\n");
+    res.write("AI chooses: " + aiChoice + "<br><br>\n");
     res.write("Outcome: " + obj.outcome + "<br>\n");
     res.write("Wins: " + obj.wins + "<br>\n");
     res.write("Losses: " + obj.losses + "<br>\n");
     res.write("Ties: " + obj.ties + "<br>\n");
-    res.write("<br><a href='../../''>Try again</a>\n");
+    res.write("<br><a href='../../''>Try again</a>\n"); //to go back to bodypage
     res.write("</body>\n");
     res.end("</html>\n");
 
