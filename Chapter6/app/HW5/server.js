@@ -33,90 +33,95 @@ function checkInput(playerSelect){
     {
         if(aiSelect === "scissors"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
-        }else if(aiSelect === "paper"){
+            gameStats.wins++;
+        }
+        else if(aiSelect === "paper"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++; 
         }
         else if(aiSelect === "lizard"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }
         else{
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
     }
     else if (playerSelect === "paper")
     {
         if(aiSelect === "rock"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
-        }else if(aiSelect === "scissors"){
+            gameStats.wins++;
+        }
+        else if(aiSelect === "scissors"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
         else if(aiSelect === "lizard"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
         else{
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }        
     }
     else if (playerSelect === "scissors") //working
     {
         if(aiSelect === "rock"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
-        }else if(aiSelect === "paper"){
+            gameStats.losses++;
+        }
+        else if(aiSelect === "paper"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }
         else if(aiSelect === "lizard"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }
         else{
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
     }
     else if (playerSelect === "lizard")
     {
         if(aiSelect === "rock"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
-        }else if(aiSelect === "scissors"){
+            gameStats.losses++;
+        }
+        else if(aiSelect === "scissors"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
         else if(aiSelect === "paper"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }
         else{
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }        
     }
     else if (playerSelect === "spock")
     {
         if(aiSelect === "rock"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
-        }else if(aiSelect === "scissors"){
+            gameStats.wins++;
+        }
+        else if(aiSelect === "scissors"){
             gameStats.outcome = "\"win\"";
-            gameStats.wins = gameStats.wins + 1;
+            gameStats.wins++;
         }
         else if(aiSelect === "lizard"){
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }
         else{
             gameStats.outcome = "\"lose\"";
-            gameStats.losses = gameStats.losses + 1;
+            gameStats.losses++;
         }        
     }
 
@@ -172,7 +177,7 @@ function routePage(req, res){
     }
     else 
     {
-        bodyPage(res);
+        bodyPage(res);  //back form to go to bodypage
     }
 }
 
