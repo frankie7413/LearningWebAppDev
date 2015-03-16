@@ -140,7 +140,7 @@ function bodyPage(res) {
 
     //body
     res.write("<body>\n");
-    res.write("<h1>Choose an option:</h1>\n");
+    res.write("<h1>Choose one of the options:</h1>\n");
     res.write("<form method='POST' action='/play/rock'><input type='submit' value='Rock'></form>\n");
     res.write("<form method='POST' action='/play/paper'><input type='submit' value='Paper'></form>\n");
     res.write("<form method='POST' action='/play/scissors'><input type='submit' value='Scissors'></form>\n");
