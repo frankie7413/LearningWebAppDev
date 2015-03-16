@@ -1,6 +1,6 @@
 var http = require("http"),
     temp,
-    obj, 
+    json_obj, 
     aiChoice,
     playerChoice,
     server;
@@ -135,7 +135,7 @@ function bodyPage(res) {
 
     //body
     res.write("<body>\n");
-    res.write("<p>Choose an option:</p>\n");
+    res.write("<h1>Choose an option:</h1>\n");
     res.write("<form method='POST' action='/play/rock'><input type='submit' value='Rock'></form>\n");
     res.write("<form method='POST' action='/play/paper'><input type='submit' value='Paper'></form>\n");
     res.write("<form method='POST' action='/play/scissors'><input type='submit' value='Scissors'></form>\n");
@@ -180,22 +180,25 @@ function routePage(req, res){
 function gameResult(res) {
     temp = '{"outcome": ' + gameStats.outcome + ', "wins": ' + gameStats.wins + ', "losses": ' + gameStats.losses + ', "ties": ' + gameStats.ties + '}';
     //parse json object 
-    obj = JSON.parse(temp);
+    json_obj = JSON.parse(temp);
 
     res.write("<!DOCTYPE html>\n");
     res.write("<html lang='en'>\n");
     res.write("<head>\n");
     res.write("<meta charset='utf-8'>\n");
-    res.write("<title>GAme Test</title>\n");
+    res.write("<title>Game Test</title>\n");
     res.write("</head>\n");
     res.write("<body>\n");
-    res.write("You chose: " + playerChoice + "<br>\n");
-    res.write("AI chooses: " + aiChoice + "<br><br>\n");
-    res.write("Outcome: " + obj.outcome + "<br>\n");
-    res.write("Wins: " + obj.wins + "<br>\n");
-    res.write("Losses: " + obj.losses + "<br>\n");
-    res.write("Ties: " + obj.ties + "<br>\n");
-    res.write("<br><a href='../../''>Try again</a>\n"); //to go back to bodypage
+    res.write("<h1>Game Results</h1>\n");
+    res.write("<p>Player Choice: " + playerChoice + "</p>\n");
+    res.write("<p>AI Choice: " + aiChoice + "</p>\n");
+    res.write("<p>Game Stats & Scores:</p>");
+    res.write("<ul>");
+    res.write("<li>Outcome: " + json_obj.outcome + "</li>\n");
+    res.write("<li>Wins: " + json_obj.wins + "</li>\n");
+    res.write("<li>Losses: " + json_obj.losses + "</li>\n");
+    res.write("<li>Ties: " + json_obj.ties + "</li></ul>\n");
+    res.write("<form method='POST' action= '../../'><input type='submit' value='Back'></form>\n"); //go back to localhost:3000 
     res.write("</body>\n");
     res.end("</html>\n");
 
