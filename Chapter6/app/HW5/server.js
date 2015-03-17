@@ -31,98 +31,61 @@ function checkInput(playerSelect){
     }
     else if (playerSelect === "rock")  
     {
-        if(aiSelect === "scissors"){
+        if(aiSelect === "scissors" || aiSelect === "lizard"){
             gameStats.outcome = "\"win\"";
             gameStats.wins++;
         }
-        else if(aiSelect === "paper"){
+        else if(aiSelect === "paper" || aiSelect === "spock"){
             gameStats.outcome = "\"lose\"";
             gameStats.losses++; 
-        }
-        else if(aiSelect === "lizard"){
-            gameStats.outcome = "\"win\"";
-            gameStats.wins++;
-        }
-        else{
-            gameStats.outcome = "\"lose\"";
-            gameStats.losses++;
         }
     }
     else if (playerSelect === "paper")
     {
-        if(aiSelect === "rock"){
+        if(aiSelect === "rock" || aiSelect === "spock"){
             gameStats.outcome = "\"win\"";
             gameStats.wins++;
         }
-        else if(aiSelect === "scissors"){
+        else if(aiSelect === "scissors" || aiSelect === "lizard"){
             gameStats.outcome = "\"lose\"";
             gameStats.losses++;
         }
-        else if(aiSelect === "lizard"){
-            gameStats.outcome = "\"lose\"";
-            gameStats.losses++;
-        }
-        else{
-            gameStats.outcome = "\"win\"";
-            gameStats.wins++;
-        }        
+        
     }
     else if (playerSelect === "scissors") //working
     {
-        if(aiSelect === "rock"){
+        if(aiSelect === "rock" || aiSelect === "spock"){
             gameStats.outcome = "\"lose\"";
             gameStats.losses++;
         }
-        else if(aiSelect === "paper"){
+        else if(aiSelect === "paper" || aiSelect === "lizard"){
             gameStats.outcome = "\"win\"";
             gameStats.wins++;
         }
-        else if(aiSelect === "lizard"){
-            gameStats.outcome = "\"win\"";
-            gameStats.wins++;
-        }
-        else{
-            gameStats.outcome = "\"lose\"";
-            gameStats.losses++;
-        }
+
     }
     else if (playerSelect === "lizard")
     {
-        if(aiSelect === "rock"){
+        if(aiSelect === "rock" || aiSelect === "scissors"){
             gameStats.outcome = "\"lose\"";
             gameStats.losses++;
         }
-        else if(aiSelect === "scissors"){
-            gameStats.outcome = "\"lose\"";
-            gameStats.losses++;
-        }
-        else if(aiSelect === "paper"){
+        else if(aiSelect === "paper" || aiSelect === "spock"){
             gameStats.outcome = "\"win\"";
             gameStats.wins++;
         }
-        else{
-            gameStats.outcome = "\"win\"";
-            gameStats.wins++;
-        }        
+       
     }
     else if (playerSelect === "spock")
     {
-        if(aiSelect === "rock"){
+        if(aiSelect === "rock" || aiSelect === "scissors"){
             gameStats.outcome = "\"win\"";
             gameStats.wins++;
         }
-        else if(aiSelect === "scissors"){
-            gameStats.outcome = "\"win\"";
-            gameStats.wins++;
-        }
-        else if(aiSelect === "lizard"){
+        else if(aiSelect === "lizard" || aiSelect === "paper"){
             gameStats.outcome = "\"lose\"";
             gameStats.losses++;
-        }
-        else{
-            gameStats.outcome = "\"lose\"";
-            gameStats.losses++;
-        }        
+        }       
     }
 
 }
@@ -175,11 +138,12 @@ function routePage(req, res){
         checkInput("spock");
         gameResult(res);
     }
-    else 
+    else
     {
-        bodyPage(res);  //back form to go to bodypage
+        bodyPage(res); //back form to go to bodypage
     }
 }
+
 
 //page with json object response 
 function gameResult(res) {
