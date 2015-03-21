@@ -5,12 +5,25 @@ var main = function() {
 		processPost("/play/rock");
 	});
 
+	$("#paper").click(function() {
+		processPost("/play/paper");
+	});	
 
+	$("#scissors").click(function() {
+		processPost("/play/scissors");
+	});
 
+	$("#lizard").click(function() {
+		processPost("/play/lizard");
+	});
+
+	$("#spock").click(function() {
+		processPost("/play/spock");
+	});
 };
 
 function generateResponse(gameresult) {
-	var $resultstr = $("<p>").text("Game Stats & Scores:");
+	var $resultstr = $("<p>").text("Game Stats & Scores:"),
 		$player = $("<p>").text("Player Choice: " + gameresult.playerchoice),
 		$aiplayer = $("<p>").text("AI Choice: " + gameresult.aichoice),
 		$content = $("<ul>"),
@@ -27,7 +40,6 @@ function generateResponse(gameresult) {
 }
 
 function processPost(Post) {
-	console.log("------started processPost -------");
 	var $result;
 
 	$.getJSON(Post, function(gameresult) {

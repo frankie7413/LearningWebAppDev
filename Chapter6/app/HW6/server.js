@@ -2,14 +2,6 @@ var http = require("http"),
 	express = require("express"),
 	gameStats = {};
 
-//store stats of games played
-// var gameStats = {
-//     outcome: "\"play\"",
-//     wins: 0,
-//     losses: 0,
-//     ties: 0
-// };
-
 gameStats.aichoice = "";
 gameStats.playerchoice = "";
 gameStats.outcome = "";
@@ -103,10 +95,33 @@ http.createServer(app).listen(3000);  //sets server & app
 app.use(express.static(__dirname + "/client"));
 
 app.get("/play/rock", function (req, res) {
-	checkInput("rock");
-	res.json(gameStats);
-	console.log("Post worked");
+	checkInput("rock");	//updates json object
+	res.json(gameStats); //sends json object
+	console.log("Post worked");	
 });
 
+app.get("/play/paper", function (req, res) {
+	checkInput("paper");	//updates json object
+	res.json(gameStats); //sends json object
+	console.log("Post worked");	
+});
+
+app.get("/play/scissors", function (req, res) {
+	checkInput("scissors");	//updates json object
+	res.json(gameStats); //sends json object
+	console.log("Post worked");	
+});
+
+app.get("/play/lizard", function (req, res) {
+	checkInput("lizard");	//updates json object
+	res.json(gameStats); //sends json object
+	console.log("Post worked");	
+});
+
+app.get("/play/spock", function (req, res) {
+	checkInput("spock");	//updates json object
+	res.json(gameStats); //sends json object
+	console.log("Post worked");	
+});
  
 console.log("Server is listening at port 3000");
