@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <title>Twitter Example!</title>
+  </head>
+
+  <body>
+    <h1>Welcome to Rock, Paper, Scissors, Lizard, Spock</h1>
+    <h3>Choose one of the options: </h3>
+    <main>
+    <form method='POST' action='/play/rock'><input type='submit' value='Rock'></form>
+    <form method='POST' action='/play/paper'><input type='submit' value='Paper'></form>
+    <form method='POST' action='/play/scissors'><input type='submit' value='Scissors'></form>
+    <form method='POST' action='/play/lizard'><input type='submit' value='Lizard'></form>
+    <form method='POST' action='/play/spock'><input type='submit' value='Spock'></form>
+
+    <div classs = "Result"> 
+    </div>
+    
+    </main>
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>
