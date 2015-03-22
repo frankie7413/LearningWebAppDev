@@ -123,10 +123,5 @@ app.get("/play/spock", function (req, res) {
 	res.json(gameStats); //sends json object
 	console.log("Spock Played");	
 });
-
-app.get("/", function (req, res) {
-	
-});
-
  
 console.log("Server is listening at port 3000");

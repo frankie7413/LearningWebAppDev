@@ -29,10 +29,10 @@ function generateResponse(gameresult) {
 		$feedback = $("<h3>").text("You " + gameresult.outcome + " gg!"),
 		$description = $("<h3>").text("Game Stats & Scores:"),
 		$content = $("<ul>"),
-		$listoutcome = $("<li>").text("Wins: " + gameresult.outcome),
-		$listwin = $("<li>").text("Losses: " + gameresult.wins),
-		$listloss = $("<li>").text("Ties: " + gameresult.losses),
-		$listties = $("<li>").text("Outcome: " + gameresult.ties);
+		$listoutcome = $("<li>").text("Outcome: " + gameresult.outcome),
+		$listwin = $("<li>").text("Wins: " + gameresult.wins),
+		$listloss = $("<li>").text("Losses: " + gameresult.losses),
+		$listties = $("<li>").text("Ties: " + gameresult.ties);
 
 		$content.append($listoutcome).append($listwin).append($listloss).append($listties); 
 		$resultstr.append($feedback).append($player).append($aiplayer).append($description).append($content);
