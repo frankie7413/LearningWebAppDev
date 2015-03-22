@@ -29,22 +29,22 @@ function checkInput(playerSelect) {
     else if (playerSelect === "rock")  
     {
         if(aiSelect === "scissors" || aiSelect === "lizard"){
-            gameStats.outcome = "win";
+        	gameStats.outcome = "Win";
             gameStats.wins++;
         }
         else if(aiSelect === "paper" || aiSelect === "spock"){
-            gameStats.outcome = "lose";
+            gameStats.outcome = "Lose";
             gameStats.losses++; 
         }
     }
     else if (playerSelect === "paper")
     {
         if(aiSelect === "rock" || aiSelect === "spock"){
-            gameStats.outcome = "win";
+            gameStats.outcome = "Win";
             gameStats.wins++;
         }
         else if(aiSelect === "scissors" || aiSelect === "lizard"){
-            gameStats.outcome = "lose";
+            gameStats.outcome = "Lose";
             gameStats.losses++;
         }
         
@@ -52,11 +52,11 @@ function checkInput(playerSelect) {
     else if (playerSelect === "scissors") //working
     {
         if(aiSelect === "rock" || aiSelect === "spock"){
-            gameStats.outcome = "lose";
+            gameStats.outcome = "Lose";
             gameStats.losses++;
         }
         else if(aiSelect === "paper" || aiSelect === "lizard"){
-            gameStats.outcome = "win";
+            gameStats.outcome = "Win";
             gameStats.wins++;
         }
 
@@ -64,11 +64,11 @@ function checkInput(playerSelect) {
     else if (playerSelect === "lizard")
     {
         if(aiSelect === "rock" || aiSelect === "scissors"){
-            gameStats.outcome = "lose";
+            gameStats.outcome = "Lose";
             gameStats.losses++;
         }
         else if(aiSelect === "paper" || aiSelect === "spock"){
-            gameStats.outcome = "win";
+            gameStats.outcome = "Win";
             gameStats.wins++;
         }
        
@@ -76,11 +76,11 @@ function checkInput(playerSelect) {
     else if (playerSelect === "spock")
     {
         if(aiSelect === "rock" || aiSelect === "scissors"){
-            gameStats.outcome = "win";
+            gameStats.outcome = "Win";
             gameStats.wins++;
         }
         else if(aiSelect === "lizard" || aiSelect === "paper"){
-            gameStats.outcome = "lose";
+            gameStats.outcome = "Lose";
             gameStats.losses++;
         }       
     }
@@ -97,31 +97,36 @@ app.use(express.static(__dirname + "/client"));
 app.get("/play/rock", function (req, res) {
 	checkInput("rock");	//updates json object
 	res.json(gameStats); //sends json object
-	console.log("Post worked");	
+	console.log("Rock Played");	
 });
 
 app.get("/play/paper", function (req, res) {
 	checkInput("paper");	//updates json object
 	res.json(gameStats); //sends json object
-	console.log("Post worked");	
+	console.log("Paper Played");	
 });
 
 app.get("/play/scissors", function (req, res) {
 	checkInput("scissors");	//updates json object
 	res.json(gameStats); //sends json object
-	console.log("Post worked");	
+	console.log("scissors Played");	
 });
 
 app.get("/play/lizard", function (req, res) {
 	checkInput("lizard");	//updates json object
 	res.json(gameStats); //sends json object
-	console.log("Post worked");	
+	console.log("Lizard Played");	
 });
 
 app.get("/play/spock", function (req, res) {
 	checkInput("spock");	//updates json object
 	res.json(gameStats); //sends json object
-	console.log("Post worked");	
+	console.log("Spock Played");	
 });
+
+app.get("/", function (req, res) {
+	
+});
+
  
 console.log("Server is listening at port 3000");

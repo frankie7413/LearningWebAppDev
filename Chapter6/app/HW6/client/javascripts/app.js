@@ -23,9 +23,11 @@ var main = function() {
 };
 
 function generateResponse(gameresult) {
-	var $resultstr = $("<p>").text("Game Stats & Scores:"),
+	var $resultstr = $("<p>"),
 		$player = $("<p>").text("Player Choice: " + gameresult.playerchoice),
 		$aiplayer = $("<p>").text("AI Choice: " + gameresult.aichoice),
+		$feedback = $("<h3>").text("You " + gameresult.outcome + " gg!"),
+		$description = $("<h3>").text("Game Stats & Scores:"),
 		$content = $("<ul>"),
 		$listoutcome = $("<li>").text("Wins: " + gameresult.outcome),
 		$listwin = $("<li>").text("Losses: " + gameresult.wins),
@@ -33,11 +35,13 @@ function generateResponse(gameresult) {
 		$listties = $("<li>").text("Outcome: " + gameresult.ties);
 
 		$content.append($listoutcome).append($listwin).append($listloss).append($listties); 
-		$resultstr.append($player).append($aiplayer).append($content);
+		$resultstr.append($feedback).append($player).append($aiplayer).append($description).append($content);
 		console.log("----------------get json----------------------------");
 
 		return $resultstr;
 }
+
+
 
 function processPost(Post) {
 	var $result;
@@ -45,7 +49,7 @@ function processPost(Post) {
 	$.getJSON(Post, function(gameresult) {
 		$("main .result").empty(); //clears previous html code
 		$result = generateResponse(gameresult); //update html code
-		$("main .result").append($result);
+		$("main .result").append($result).append($reset);
 	});
 }
 
