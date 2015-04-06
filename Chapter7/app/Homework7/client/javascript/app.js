@@ -1,6 +1,8 @@
 var main = function() {
     var $result,
         url,
+        link,
+        index,
         userUrl;
 
     $("#button").click(function() {
@@ -20,7 +22,8 @@ var main = function() {
             .done(function (data, status) {
                 $("#result").html(""); //html added
                 //inserts link into dom
-                $("#result").append("<a href= /url>" + data.url + "</a>");  
+                link = checkinput(data.url);
+                $("#result").append("<a href = "+ link + ">" + data.url + "</a>");  
             })
             .fail(function (data, status){
                 console.log("Call is fail");
@@ -28,6 +31,19 @@ var main = function() {
         }
 
     });
+
+    //parse the json string to be able to get or to link to long url 
+    function checkinput (link) {
+        index = link.indexOf("localhost:3000");
+
+        if(index > -1) {
+            //posturl = posturl.replace("http://localhost:3000/", "");
+            link = link.replace("localhost:3000", "");
+        }
+
+        return link;
+    }
+
 };
 
 $(document).ready(main);

@@ -28,7 +28,7 @@ function randomURL () {
 
 
 //when person enters url check if it exist or is a shortened url or new url to shorten
-app.post("/geturl", function(req, res) {
+app.post("/geturl", function (req, res) {
 	console.log("post called");
 	//get the url from json
 	var posturl = req.body.url0;
@@ -37,33 +37,38 @@ app.post("/geturl", function(req, res) {
 	{
 		//if user enters shorted url find the original to output
 		//posturl = posturl.replace("http://localhost:3000/", "");
-
-
 		client.get("short:" + posturl, function (err, original){
 			if(err !== null){
 				console.log("Error:" + err);
 				return;  //error handling
 			}
-			//returns original long url 
-			res.json({"url":original});
+			else if(original === null){
+				console.log("URL does not exist in the database");
+				return;
+			}
+			else {
+				//returns original long url 
+				res.json({"url":original});
+			}
 		});
 
 	}
 	else
 	{
 		//what if url has been entered before? can we just returned a genrated one?
-		//client.hget(long)
+		//client.get(long)
 		//if found do or else do the rest huh yup 
 		//process the long url to shorten
 
 		//check to see if long url already exist!
+		posturl = "https://" + posturl;
 		client.get("long:" + posturl, function (err, shorten){
 			if(err !== null){
 				console.log("Error:" + err);
 				return;
 			}
 			else if(shorten === null){
-				var sorturl = "http://localhost:3000/" + randomURL();
+				var sorturl = "localhost:3000/" + randomURL();
 				client.set("short:" + sorturl, posturl);
 				client.set("long:" + posturl,  sorturl);
 
@@ -75,18 +80,84 @@ app.post("/geturl", function(req, res) {
 				//return previously created short
 				res.json({"url":shorten});
 			}
-
 		});
-
 	}
-
 	//res.json({"url":"test"});
 	console.log("post suceesful");
 });
 
+
+
 //shuld update views of data on redis and send user to original url 
-app.get("/url", function(req, res){
+app.get("/:url", function (req, res){
 	console.log("get called");
+	var shorturl = req.params.url;
+	shorturl = "localhost:3000/" + shorturl;
+
+	//var size = shorturl.indexOf("localhost:3000"); //check if input is min url 
+
+		client.get("short:" + shorturl, function (err, original){
+			if(err !== null){
+				console.log("Error:" + err);
+				return;  //error handling
+			}
+			else if(original === null){
+				console.log("URL does not exist in the database:");
+				return;
+			}
+			else {
+				//returns original long url 
+				res.redirect(original);
+			}
+		});
+
+	// if(size > -1){
+	// 	//find the original url 
+	// 	client.get("short:" + posturl, function (err, original){
+	// 		if(err !== null){
+	// 			console.log("Error:" + err);
+	// 			return;  //error handling
+	// 		}
+	// 		else if(original === null){
+	// 			console.log("URL does not exist in the database");
+	// 			return;
+	// 		}
+	// 		else {
+	// 			//returns original long url 
+	// 			longurl = original;
+	// 		}
+	// 	});
+
+	// 	//check to see if it exist in views 
+	// 	//if exist add 1 to the value of it
+	// 	//else create one and set value to 1
+	// 	client.get("view:" + shorturl, function (err, value) {
+	// 		if(err !== null){
+	// 			console.log("Error:" + err);
+	// 			return;
+	// 		}
+	// 		else if(value === null){
+	// 			//create view for the link set to 1 value
+	// 			//create zadd
+	// 			client.set("view:" + shorturl, "1");
+	// 		}
+	// 		else
+	// 		{
+	// 			//increase value by 1 create zadd 
+	// 			valueincr = parseInt(value, 10);
+	// 			valueincr = valueincr + 1;
+	// 			//set view to new value
+	// 			client.set("view:" + shorturl, valueincr);
+
+	// 			//send user to original url
+	// 			res.redirect(longurl);
+	// 		}
+	// 	});	
+	// }
+	// else
+	// {
+	// 	res.redirect(shorturl);
+	// }
 });
 
 
