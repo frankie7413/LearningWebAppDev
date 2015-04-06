@@ -44,13 +44,6 @@ var main = function() {
         return link;
     }
 
-    setInterval(function() {
-        $.getJSON("/zapp.json", function(elements) {
-            $('#visit').hmtl("");
-            //process the array i guess 
-        });
-    }, 5000);
-
 };
 
 $(document).ready(main);

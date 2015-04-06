@@ -90,11 +90,11 @@ app.post("/geturl", function (req, res) {
 
 //shuld update views of data on redis and send user to original url 
 app.get("/:url", function (req, res){
-	console.log("get called");
+	console.log("get called is called");
 	var shorturl = req.params.url;
 	var valueincr = 1,
-		orignalurl;
-	shorturl = "localhost:3000/" + shorturl;
+		orignalurl,
+		shorturl = "localhost:3000/" + shorturl;
 
 	//assuming the original website they link exist and works
 	client.get("short:" + shorturl, function (err, original){
@@ -140,20 +140,3 @@ app.get("/:url", function (req, res){
 
 });
 
-app.get("/zapp.json", function(req, res) {
-	client.zrevrange('link', 0, -1, 'WITHSCORES',print);
-});
-
-
-/*
-http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-2/
-def get_latest_jobs
-  keys = redis.zrevrange('jobs', 0, 150)
-  jobs = redis.mget(*keys)
-  jobs.map do |j|
-    job = JSON.parse(j)
-    job['created_at'] = Time.at(job['created_at'])
-    job
-  end
-end
-*/
