@@ -2,7 +2,8 @@ var express = require("express"),
 	http = require("http"),
 	redis = require("redis"),
 	redisClient,
-	bodyParser = require('body-parser');
+	bodyParser = require('body-parser'),
+	key,
 	app = express();
 
 //redis client
@@ -134,9 +135,11 @@ app.get("/:url", function (req, res){
 			client.set("view:" + shorturl, valueincr);
 			client.zadd('link', valueincr, shorturl);
 		}
-
 		res.redirect(orignalurl);
 	});
 
 });
 
+app.get("/zapp.json", function(req, res) {
+	client.zrevrange('link', 0, 9, 'withscores');
+});

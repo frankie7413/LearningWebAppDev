@@ -5,6 +5,19 @@ var main = function() {
         index,
         userUrl;
 
+
+    //parse the json string to be able to get or to link to long url 
+    function checkinput (link) {
+        index = link.indexOf("localhost:3000");
+
+        if(index > -1) {
+            //posturl = posturl.replace("http://localhost:3000/", "");
+            link = link.replace("localhost:3000", "");
+        }
+
+        return link;
+    }
+
     $("#button").click(function() {
         url = $("#url").val();
         if (url === '') {
@@ -32,17 +45,13 @@ var main = function() {
 
     });
 
-    //parse the json string to be able to get or to link to long url 
-    function checkinput (link) {
-        index = link.indexOf("localhost:3000");
-
-        if(index > -1) {
-            //posturl = posturl.replace("http://localhost:3000/", "");
-            link = link.replace("localhost:3000", "");
-        }
-
-        return link;
-    }
+    // setInterval(function() {
+    //     $.getJSON("/zapp.json", function(elements) {
+    //     //$('#visit').hmtl("");
+    //     //process the array i guess 
+    //     //$("#visit").append("<p>list works</p>");
+    //     });
+    // }, 5000);
 
 };
 
