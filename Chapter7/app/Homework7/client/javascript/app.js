@@ -20,7 +20,7 @@ var main = function() {
             .done(function (data, status) {
                 $("#result").html(""); //html added
                 //inserts link into dom
-                $("#result").append("<a href="+data.url+">"+data.url+"</a>");  
+                $("#result").append("<a href= /url>" + data.url + "</a>");  
             })
             .fail(function (data, status){
                 console.log("Call is fail");

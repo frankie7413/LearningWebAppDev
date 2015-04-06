@@ -27,7 +27,7 @@ function randomURL () {
 }
 
 
-//when person enters url
+//when person enters url check if it exist or is a shortened url or new url to shorten
 app.post("/geturl", function(req, res) {
 	console.log("post called");
 	//get the url from json
@@ -35,11 +35,30 @@ app.post("/geturl", function(req, res) {
 	var index = posturl.indexOf("localhost:3000"); //check if input is min url 
 	if(index > -1)
 	{
-		//find the long url in redis to return 
+		//if user enters shorted url find the original to output
+		//posturl = posturl.replace("http://localhost:3000/", "");
+
+
+		client.get("short:" + posturl, function (err, original){
+			if(err !== null){
+				console.log("Error:" + err);
+				return;  //error handling
+			}
+			//returns original long url 
+			res.json({"url":original});
+		});
+
 	}
 	else
 	{
-		var sorturl = randomURL();
+		//what if url has been entered before? can we just returned a genrated one?
+		//client.hget(long)
+		//if found do or else do the rest huh yup 
+		//process the long url to shorten
+		var sorturl = "http://localhost:3000/" + randomURL();
+		client.set("short:" + sorturl, posturl);
+		client.set("long:" + posturl,  sorturl);
+
 		res.json({"url":sorturl});
 		//new link to insert
 		//long not exist
@@ -49,12 +68,10 @@ app.post("/geturl", function(req, res) {
 	console.log("post suceesful");
 });
 
-//shuld update views of data on redis 
+//shuld update views of data on redis and send user to original url 
 app.get("/url", function(req, res){
 	console.log("get called");
 });
-
-//checks to see if url exist or redirects if it does exist
 
 
 
