@@ -22,7 +22,7 @@ function randomURL () {
 	// body...
 	//http://stackoverflow.com/questions/1349404/generate-a-string-of-5-random-characters-in-javascript
 	//var text = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 4);
-	var text = Math.random().toString(36).substr(0, 4);
+	var text = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 4);
 	return text;
 }
 
@@ -35,20 +35,21 @@ app.post("/geturl", function(req, res) {
 	var index = posturl.indexOf("localhost:3000"); //check if input is min url 
 	if(index > -1)
 	{
-		//find the long url
+		//find the long url in redis to return 
 	}
 	else
 	{
+		var sorturl = randomURL();
+		res.json({"url":sorturl});
 		//new link to insert
+		//long not exist
 	}
 
-
-
-	res.json({"url":"test"});
+	//res.json({"url":"test"});
 	console.log("post suceesful");
 });
 
-
+//shuld update views of data on redis 
 app.get("/url", function(req, res){
 	console.log("get called");
 });
