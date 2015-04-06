@@ -1,24 +1,33 @@
 var main = function() {
-    var $result;
+    var $result,
+        url,
+        userUrl;
 
-    $('#button').click( function(){
-        //get the url from the input
-        var url = $("url").val();
-            if(url === undefined)
-            {
-                alert("Please enter a url into the text box");
-            }
-            else
-            {
-                $.getJson("/getURL", function(reduceURL) {
-                    $("main .result").empty(); //clears previous html code
-                    $("main .result").append("<a href="+data.url+">"+data.url+"</a>");
+    $("#button").click(function() {
+        url = $("#url").val();
+        if (url === '') {
+            alert("Empty url, please enter url.");
+        }
+        else {
+            userUrl = JSON.stringify({url0:url});
+            $.ajax({
+                type: "POST",  //post to server.js
+                url: "/geturl",    //route
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",  //json type
+                data: userUrl
+            })
+            .done(function (data, status) {
+                $("#result").html(""); //html added
+                //inserts link into dom
+                $("#result").append("<a href="+data.url+">"+data.url+"</a>");  
+            })
+            .fail(function (data, status){
+                console.log("Call is fail");
+            });
+        }
 
-                });
-
-            }
     });
-
 };
 
 $(document).ready(main);
