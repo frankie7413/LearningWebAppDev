@@ -35,9 +35,9 @@ client.get("awesome", function (err, awesomeCount) {
                     client.incr("awesome");
 
                     counts.awesome = counts.awesome + 1;
-		}
-            });
-	}
+		         }
+             });
+	     }
     );
 });
 
