@@ -55,13 +55,29 @@ app.post("/geturl", function(req, res) {
 		//client.hget(long)
 		//if found do or else do the rest huh yup 
 		//process the long url to shorten
-		var sorturl = "http://localhost:3000/" + randomURL();
-		client.set("short:" + sorturl, posturl);
-		client.set("long:" + posturl,  sorturl);
 
-		res.json({"url":sorturl});
-		//new link to insert
-		//long not exist
+		//check to see if long url already exist!
+		client.get("long:" + posturl, function (err, shorten){
+			if(err !== null){
+				console.log("Error:" + err);
+				return;
+			}
+			else if(shorten === null){
+				var sorturl = "http://localhost:3000/" + randomURL();
+				client.set("short:" + sorturl, posturl);
+				client.set("long:" + posturl,  sorturl);
+
+				res.json({"url":sorturl});
+				//new link to insert
+				//long not exist
+			}
+			else{
+				//return previously created short
+				res.json({"url":shorten});
+			}
+
+		});
+
 	}
 
 	//res.json({"url":"test"});
