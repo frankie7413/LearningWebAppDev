@@ -92,73 +92,68 @@ app.post("/geturl", function (req, res) {
 app.get("/:url", function (req, res){
 	console.log("get called");
 	var shorturl = req.params.url;
+	var valueincr = 1,
+		orignalurl;
 	shorturl = "localhost:3000/" + shorturl;
 
-	//var size = shorturl.indexOf("localhost:3000"); //check if input is min url 
+	//assuming the original website they link exist and works
+	client.get("short:" + shorturl, function (err, original){
+		if(err !== null){
+			console.log("Error:" + err);
+			return;  //error handling
+		}
+		else if(original === null){
+			console.log("URL does not exist in the database:");
+			return;
+		}
+		else {
+			//returns original long url 
+			orignalurl = original;
+		}
+	});
 
-		client.get("short:" + shorturl, function (err, original){
-			if(err !== null){
-				console.log("Error:" + err);
-				return;  //error handling
-			}
-			else if(original === null){
-				console.log("URL does not exist in the database:");
-				return;
-			}
-			else {
-				//returns original long url 
-				res.redirect(original);
-			}
-		});
+	//check to see if it exist in views 
+	//if exist add 1 to the value of it
+	//else create one and set value to 1
+	client.get("view:" + shorturl, function (err, value) {
+		if(err !== null){
+			console.log("Error:" + err);
+			return;
+		}
+		else if(value === null){
+			//create view for the link set to 1 value
+			//creat zadd 
+			client.set("view:" + shorturl, valueincr);
+			client.zadd('link', valueincr, shorturl);
+		}
+		else{
+			//increase value by 1 create zadd
+			valueincr = parseInt(value, 10);
+			valueincr = valueincr + 1;
+			//set view to new value
+			client.set("view:" + shorturl, valueincr);
+			client.zadd('link', valueincr, shorturl);
+		}
 
-	// if(size > -1){
-	// 	//find the original url 
-	// 	client.get("short:" + posturl, function (err, original){
-	// 		if(err !== null){
-	// 			console.log("Error:" + err);
-	// 			return;  //error handling
-	// 		}
-	// 		else if(original === null){
-	// 			console.log("URL does not exist in the database");
-	// 			return;
-	// 		}
-	// 		else {
-	// 			//returns original long url 
-	// 			longurl = original;
-	// 		}
-	// 	});
+		res.redirect(orignalurl);
+	});
 
-	// 	//check to see if it exist in views 
-	// 	//if exist add 1 to the value of it
-	// 	//else create one and set value to 1
-	// 	client.get("view:" + shorturl, function (err, value) {
-	// 		if(err !== null){
-	// 			console.log("Error:" + err);
-	// 			return;
-	// 		}
-	// 		else if(value === null){
-	// 			//create view for the link set to 1 value
-	// 			//create zadd
-	// 			client.set("view:" + shorturl, "1");
-	// 		}
-	// 		else
-	// 		{
-	// 			//increase value by 1 create zadd 
-	// 			valueincr = parseInt(value, 10);
-	// 			valueincr = valueincr + 1;
-	// 			//set view to new value
-	// 			client.set("view:" + shorturl, valueincr);
+});
 
-	// 			//send user to original url
-	// 			res.redirect(longurl);
-	// 		}
-	// 	});	
-	// }
-	// else
-	// {
-	// 	res.redirect(shorturl);
-	// }
+app.get("/zapp.json", function(req, res) {
+	client.zrevrange('link', 0, -1, 'WITHSCORES',print);
 });
 
 
-
+/*
+http://openmymind.net/2011/11/8/Redis-Zero-To-Master-In-30-Minutes-Part-2/
+def get_latest_jobs
+  keys = redis.zrevrange('jobs', 0, 150)
+  jobs = redis.mget(*keys)
+  jobs.map do |j|
+    job = JSON.parse(j)
+    job['created_at'] = Time.at(job['created_at'])
+    job
+  end
+end
+*/
