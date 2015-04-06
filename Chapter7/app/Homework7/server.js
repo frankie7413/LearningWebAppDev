@@ -18,7 +18,7 @@ function randomURL () {
 	// body...
 	//http://stackoverflow.com/questions/1349404/generate-a-string-of-5-random-characters-in-javascript
 	//var text = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 4);
-	var text = Math.random().toString(36).substr(2, 5);
+	var text = Math.random().toString(36).substr(0, 4);
 	return text;
 }
 
