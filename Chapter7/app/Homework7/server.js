@@ -6,6 +6,8 @@ var express = require("express"),
 	key,
 	app = express();
 
+var _ = require('underscore');
+
 //redis client
 client = redis.createClient();
 
@@ -90,12 +92,14 @@ app.post("/geturl", function (req, res) {
 
 
 //shuld update views of data on redis and send user to original url 
+//http://expressjs.com/api.html
 app.get("/:url", function (req, res){
 	console.log("get called is called");
 	var shorturl = req.params.url;
 	var valueincr = 1,
-		orignalurl,
-		shorturl = "localhost:3000/" + shorturl;
+		orignalurl;
+
+	shorturl = "localhost:3000/" + shorturl;
 
 	//assuming the original website they link exist and works
 	client.get("short:" + shorturl, function (err, original){
@@ -137,9 +141,19 @@ app.get("/:url", function (req, res){
 		}
 		res.redirect(orignalurl);
 	});
-
 });
 
-app.get("/zapp.json", function(req, res) {
-	client.zrevrange('link', 0, 9, 'withscores');
+//https://ricochen.wordpress.com/2012/02/28/example-sorted-set-functions-with-node-js-redis/
+//http://stackoverflow.com/questions/2295496/convert-array-to-json
+app.post("/getList", function (req, res){
+	client.zrevrange('link', 0, -1, function (err, reply){
+		var lists =_.groupBy(reply, function(a,b) {
+			return b;
+      		// return Math.floor(b/2);
+  		});
+		res.json(JSON.stringify(lists));
+		console.log("list passed");
+	});
 });
+
+

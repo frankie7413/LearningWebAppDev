@@ -42,16 +42,24 @@ var main = function() {
                 console.log("Call is fail");
             });
         }
-
     });
 
-    // setInterval(function() {
-    //     $.getJSON("/zapp.json", function(elements) {
-    //     //$('#visit').hmtl("");
-    //     //process the array i guess 
-    //     //$("#visit").append("<p>list works</p>");
-    //     });
-    // }, 5000);
+    setInterval(function(){ 
+        $('#visit').empty();
+        $.ajax({
+            url:"/getList",
+            error : function () {
+
+            },dataType: "json",
+            success: function (reply) {
+                var data = JSON.parse(reply);
+                var i;
+                for (i = 0; i < 10; i++) {
+                    $("#visit").append("<p>Number: "+ (i + 1) +"</p>");
+                    $("#visit").append($('<p>')).append(data[i]);
+                }
+        },type: "post"
+    })}, 5000);
 
 };
 
