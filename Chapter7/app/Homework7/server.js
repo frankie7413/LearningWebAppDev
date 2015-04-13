@@ -147,11 +147,11 @@ app.get("/:url", function (req, res){
 //http://stackoverflow.com/questions/2295496/convert-array-to-json
 app.post("/getList", function (req, res){
 	client.zrevrange('link', 0, -1, function (err, reply){
-		var lists =_.groupBy(reply, function(a,b) {
+		var list =_.groupBy(reply, function(a,b) {
 			return b;
       		// return Math.floor(b/2);
   		});
-		res.json(JSON.stringify(lists));
+		res.json(JSON.stringify(list));
 		console.log("list passed");
 	});
 });
